@@ -1,0 +1,63 @@
+services:
+  - type: web
+    name: TheMovieProviderBot
+    runtime: image
+    repo: https://github.com/ajmalitsme-ship-it/Auto-Filter-Bot
+    plan: free
+    region: oregon
+    
+    buildCommand: |
+      apt-get update && apt-get install -y git
+      pip install --upgrade pip
+      pip install -r requirements.txt
+    
+    startCommand: python bot.py
+    
+    # All variables from environment (MOST SECURE)
+    envVars:
+      - key: API_ID
+        sync: false
+        
+      - key: API_HASH
+        sync: false
+        
+      - key: BOT_TOKEN
+        sync: false
+        
+      - key: DATABASE_URI
+        sync: false
+        
+      - key: DATABASE_NAME
+        sync: false
+        
+      - key: LOG_CHANNEL
+        sync: false
+        
+      - key: PREMIUM_LOGS
+        sync: false
+        
+      - key: ADMINS
+        sync: false
+        
+      - key: AUTH_USERS
+        sync: false
+        
+      - key: CHANNELS
+        sync: false
+        
+      - key: AUTH_CHANNEL
+        sync: false
+        
+      - key: SUPPORT_CHAT_ID
+        sync: false
+        
+      - key: REQST_CHANNEL_ID
+        sync: false
+        
+      - key: PORT
+        value: "8080"
+        
+      - key: WEB_SERVER_BIND_ADDRESS
+        value: "0.0.0.0"
+    
+    autoDeploy: true
